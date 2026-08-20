@@ -1,7 +1,15 @@
-import pymupdf
 import logging
 
 logger = logging.getLogger("pdf_service")
+
+try:
+    import pymupdf
+except ImportError:
+    try:
+        import fitz as pymupdf
+    except ImportError:
+        pymupdf = None
+
 
 
 def extract_pdf_pages(file_bytes: bytes) -> list[dict]:

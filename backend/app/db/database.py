@@ -23,8 +23,11 @@ if "postgresql" in DATABASE_URL:
         logger.warning(f"PostgreSQL connection unavailable ({e}). Falling back to local SQLite database.")
 
 if not engine:
-    sqlite_url = "sqlite:///./sqlite_rag.db"
+    is_serverless = bool(os.environ.get("VERCEL") or os.environ.get("LAMBDA_TASK_ROOT") or not os.access(".", os.W_OK))
+    sqlite_path = "/tmp/sqlite_rag.db" if is_serverless else "./sqlite_rag.db"
+    sqlite_url = f"sqlite:///{sqlite_path}"
     engine = create_engine(sqlite_url, connect_args={"check_same_thread": False})
+
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
