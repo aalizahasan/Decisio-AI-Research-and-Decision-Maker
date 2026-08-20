@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { HealthResponse } from '../types';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000';
+import { API_BASE_URL } from '../config';
+
 
 export const HealthStatus: React.FC = () => {
   const [status, setStatus] = useState<'checking' | 'healthy' | 'offline'>('checking');
