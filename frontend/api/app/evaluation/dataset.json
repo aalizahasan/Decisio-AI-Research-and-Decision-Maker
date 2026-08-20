@@ -1,0 +1,114 @@
+[
+  {
+    "id": "simple_001",
+    "category": "SIMPLE_QUESTION",
+    "input": {
+      "problem": "What is FastAPI?",
+      "context": "",
+      "constraints": ""
+    },
+    "expected": {
+      "request_type": "SIMPLE_QUESTION",
+      "should_use_rag": false,
+      "should_use_matrix": false,
+      "should_use_multi_agent": false,
+      "max_word_count": 250
+    }
+  },
+  {
+    "id": "explain_001",
+    "category": "EXPLANATION",
+    "input": {
+      "problem": "Explain embeddings in simple words.",
+      "context": "For a non-technical beginner.",
+      "constraints": ""
+    },
+    "expected": {
+      "request_type": "EXPLANATION",
+      "should_use_rag": false,
+      "should_use_matrix": false,
+      "should_use_multi_agent": false,
+      "max_word_count": 350
+    }
+  },
+  {
+    "id": "advice_001",
+    "category": "ADVICE",
+    "input": {
+      "problem": "How can I improve my study routine?",
+      "context": "Computer science student",
+      "constraints": "2 hours available daily"
+    },
+    "expected": {
+      "request_type": "ADVICE",
+      "should_use_rag": false,
+      "should_use_matrix": false,
+      "should_use_multi_agent": false,
+      "max_word_count": 400
+    }
+  },
+  {
+    "id": "compare_001",
+    "category": "COMPARISON",
+    "input": {
+      "problem": "Should I learn React Native or Flutter?",
+      "context": "I already know React and JavaScript.",
+      "constraints": "3 months timeline"
+    },
+    "expected": {
+      "request_type": "COMPARISON",
+      "should_use_rag": false,
+      "should_use_matrix": true,
+      "should_use_multi_agent": false,
+      "max_word_count": 600
+    }
+  },
+  {
+    "id": "complex_001",
+    "category": "COMPLEX_DECISION",
+    "input": {
+      "problem": "Should our startup migrate from AWS to Azure considering cost, migration risk, scalability and team expertise?",
+      "context": "15 microservices running on EKS.",
+      "constraints": "$50,000 migration budget"
+    },
+    "expected": {
+      "request_type": "COMPLEX_DECISION",
+      "should_use_rag": false,
+      "should_use_matrix": true,
+      "should_use_multi_agent": true,
+      "max_word_count": 1000
+    }
+  },
+  {
+    "id": "rag_001",
+    "category": "DOCUMENT_ANALYSIS",
+    "input": {
+      "problem": "What are the key details in my transcript document?",
+      "context": "RAG query against uploaded PDF transcript.",
+      "constraints": ""
+    },
+    "expected": {
+      "request_type": "DOCUMENT_ANALYSIS",
+      "should_use_rag": true,
+      "should_use_matrix": false,
+      "should_use_multi_agent": false,
+      "max_word_count": 500
+    }
+  },
+  {
+    "id": "multi_agent_001",
+    "category": "MULTI_AGENT_DECISION",
+    "input": {
+      "problem": "Should we refactor our monolith architecture to microservices given high transaction volume and cloud budget limits?",
+      "context": "E-commerce platform scaling up for holiday season.",
+      "constraints": "6 months engineering window"
+    },
+    "expected": {
+      "request_type": "COMPLEX_DECISION",
+      "should_use_rag": false,
+      "should_use_matrix": true,
+      "should_use_multi_agent": true,
+      "max_word_count": 1000
+    }
+  }
+]
