@@ -18,7 +18,12 @@ def on_startup():
     """
     Initializes database tables on application startup.
     """
-    init_db()
+    try:
+        init_db()
+    except Exception as err:
+        import logging
+        logging.getLogger("main").error(f"Startup database initialization warning: {err}")
+
 
 
 # Enable CORS so frontend (e.g. http://localhost:5173) can make requests to backend
