@@ -211,11 +211,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const getAuthHeaders = (): Record<string, string> => {
-    if (token) {
-      return { 'Authorization': `Bearer ${token}` };
+    const activeToken = token || localStorage.getItem(TOKEN_KEY) || sessionStorage.getItem(TOKEN_KEY);
+    if (activeToken) {
+      return { 'Authorization': `Bearer ${activeToken}` };
     }
     return {};
   };
+
 
   return (
     <AuthContext.Provider

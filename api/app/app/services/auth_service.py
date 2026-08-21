@@ -9,9 +9,10 @@ from typing import Optional, Dict, Any
 from app.config import settings
 
 # JWT Secret Key and Algorithm
-SECRET_KEY = os.getenv("JWT_SECRET", "decisio_super_secret_production_key_2026_998877")
+SECRET_KEY = (os.getenv("JWT_SECRET") or "").strip() or "decisio_super_secret_production_key_2026_998877"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_DAYS = 7
+
 
 # Common disposable/fake email domains to reject for strict real email validation
 DISPOSABLE_DOMAINS = {
