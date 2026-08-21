@@ -4,6 +4,8 @@ import { DocumentItem } from '../types';
 import { API_BASE_URL } from '../config';
 
 
+import { useAuth } from '../context/AuthContext';
+
 interface DocumentUploadProps {
   onDocumentSelected: (doc: DocumentItem | null) => void;
   selectedDoc: DocumentItem | null;
@@ -13,6 +15,7 @@ export const DocumentUpload: React.FC<DocumentUploadProps> = ({
   onDocumentSelected,
   selectedDoc,
 }) => {
+  const { getAuthHeaders } = useAuth();
   const [uploading, setUploading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -34,8 +37,12 @@ export const DocumentUpload: React.FC<DocumentUploadProps> = ({
     try {
       const response = await fetch(`${API_BASE_URL}/documents/upload`, {
         method: 'POST',
+        headers: {
+          ...getAuthHeaders(),
+        },
         body: formData,
       });
+
 
       if (!response.ok) {
         let errMsg = `Upload failed with status ${response.status}`;
